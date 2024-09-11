@@ -1,4 +1,4 @@
-#include <stdio.h>
+ #include <stdio.h>
 #include <stdbool.h>
 #include <pthread.h>
 #include <unistd.h> // for sleep
@@ -7,7 +7,7 @@
 #define WIFI_HIGH_PRIORITY 1
 #define BLUETOOTH_HIGH_PRIORITY 0
 
-// PTA status structure
+// Packet Traffic Arbitration status structure
 typedef struct {
     int wifi_priority;
     int bluetooth_priority;
@@ -18,7 +18,7 @@ typedef struct {
 // Global PTA status
 PTA_Status pta_status = {WIFI_HIGH_PRIORITY, BLUETOOTH_HIGH_PRIORITY, false, false};
 
-// Simulating a mutex for traffic handling
+// a mutex for traffic handling
 pthread_mutex_t pta_lock;
 
 // PTA control logic - stub for traffic arbitration
@@ -73,7 +73,7 @@ void handle_bluetooth_traffic() {
     pthread_mutex_unlock(&pta_lock);
 
     printf("Handling Bluetooth traffic...\n");
-    sleep(1);  // Simulate transmission time
+    sleep(1);  // Simulate transmission time and call to Physical layer function
 
     pthread_mutex_lock(&pta_lock);
     pta_status.is_bt_busy = false;
@@ -82,7 +82,7 @@ void handle_bluetooth_traffic() {
     printf("Bluetooth traffic handled.\n");
 }
 
-// Simulated event for Wi-Fi data transmission
+// Simulated event for Wi-Fi data transmission and call to Physical layer function
 void* wifi_event(void* args) {
     while (1) {
         pthread_mutex_lock(&pta_lock);
