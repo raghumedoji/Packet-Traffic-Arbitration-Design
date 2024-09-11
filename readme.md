@@ -1,10 +1,12 @@
 Packet Traffic Arbitration (PTA) Simulation in C
+
 This project demonstrates a basic Packet Traffic Arbitration (PTA) system implemented in C. PTA is a hardware-based approach used to manage traffic priorities between Bluetooth and Wi-Fi communications, ensuring minimal interference between them. In this simulation, Wi-Fi is prioritized during high-throughput transmissions, while Bluetooth traffic is managed accordingly based on availability.
 
-Overview
+Overview-
+
 In real systems, PTA is handled by hardware or firmware. This project, however, provides a simplified software-based simulation to show how PTA can manage the priorities of Bluetooth and Wi-Fi traffic. The project uses threads to simulate Wi-Fi and Bluetooth traffic events, and a control function (PTA_control) decides which protocol gets access based on priority.
 
-How the Project Works
+How the Project Works-
 Wi-Fi and Bluetooth Priority: The system assigns Wi-Fi higher priority by default. When Wi-Fi traffic is detected, Wi-Fi gets the channel. If Wi-Fi is idle, Bluetooth traffic is allowed to proceed.
 
 Thread-based Simulation: Wi-Fi and Bluetooth traffic are handled by separate threads to simulate concurrent communication events. These events continuously run and invoke the PTA control logic to arbitrate between the two.
@@ -24,30 +26,21 @@ Simulates Bluetooth traffic. It handles Bluetooth transmissions when Wi-Fi is id
 Threads:
 
 Two threads simulate Wi-Fi and Bluetooth events running continuously, invoking the PTA control function to determine which traffic should proceed.
-Getting Started
-Requirements
-A C compiler (e.g., GCC)
-POSIX Threads library (pthread) for thread creation and mutex locking
-Linux, macOS, or any system that supports POSIX threads
-Compilation
-To compile the program, use the following command:
 
-bash
-Copy code
+
+Getting Started & Requirements
 gcc -o pta_simulation pta_simulation.c -lpthread
 Running the Program
 After compiling, run the program with:
 
 bash
-Copy code
+
 ./pta_simulation
 The program simulates Wi-Fi and Bluetooth traffic, allowing you to see how the PTA system decides between the two.
 
 Example Output
 When you run the program, you'll see output showing how PTA prioritizes traffic. Below is a sample output:
 
-vbnet
-Copy code
 PTA: Wi-Fi is busy, prioritizing Wi-Fi traffic...
 Handling Wi-Fi traffic...
 Wi-Fi traffic handled.
@@ -70,9 +63,8 @@ Priority Handling: Wi-Fi has higher priority by default. If Wi-Fi is busy, Bluet
 
 Mutex Locking: The pthread_mutex_t ensures that only one thread can modify the PTA status at a time, avoiding race conditions.
 
-Future Improvements
+Future Improvements features
 Dynamic Priority Adjustment: In the future, priority can be dynamically adjusted based on traffic demands or packet size.
-
 Real Hardware Integration: In a real system, this logic would interact with hardware registers and interrupts to handle PTA more efficiently.
 
 Traffic Statistics: We can add counters to track the number of packets transmitted by Wi-Fi and Bluetooth and display statistics.
